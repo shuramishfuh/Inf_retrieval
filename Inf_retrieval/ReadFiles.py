@@ -42,3 +42,14 @@ def stemWords(words):
          stemmed = snow_stemmer.stem(word) 
          stem_words.append(stemmed) 
     return stem_words
+
+
+def readInvertedIndex(fileName):
+    file = open(str(fileName),"r" ,encoding="utf8") 
+    read =  file.readlines()
+    for line in read:  
+        if word not in stop_words and word.isalpha():  
+            filtered.append(word)  
+    return filtered 
+
+

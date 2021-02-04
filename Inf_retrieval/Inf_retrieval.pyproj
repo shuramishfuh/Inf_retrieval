@@ -22,7 +22,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Iindex.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Inf_retrieval.py" />
+    <Compile Include="JsonSer.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ReadFiles.py">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +41,7 @@
     <Content Include="data\Famous_people_institution.json" />
     <Content Include="data\Google_query_wellformedness\test.json" />
     <Content Include="data\Google_query_wellformedness\train.json" />
+    <Content Include="InvertedIndex.json" />
     <Content Include="testdata.txt" />
     <Content Include="originalData.zip" />
   </ItemGroup>
