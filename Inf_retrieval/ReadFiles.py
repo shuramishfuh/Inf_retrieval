@@ -1,10 +1,12 @@
 import  pathlib
+from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords  
+from nltk.tokenize import word_tokenize 
 
 currentPath = pathlib.Path(__file__).parent
 
 # read files from data folder
-def searching_all_files(currentPath):  
+def searchingAllFiles(currentPath):  
     file_list = []
 
     for file in currentPath.iterdir():
@@ -12,23 +14,31 @@ def searching_all_files(currentPath):
             if  (str(file).endswith(".json")):
                file_list.append(file)
         else:
-            file_list.extend(searching_all_files(currentPath/file))
+            file_list.extend(searchingAllFiles(currentPath/file))
 
     return file_list
-files = searching_all_files(currentPath)
 
-# read and normalize words using stopwords
-def read_content_and_Normalize(fileNames):
-    stop_words = set(stopwords.words('english')) 
-    for doc in fileNames:
-        file = open(doc,"r+",encoding="utf8",errors='ignore') 
-        content= file.read()
-        words = content.split()    
-        for word in words: 
-            if word not in stop_words:
-              file = open(doc,"w",encoding="utf8",errors='ignore') 
-              file.write(word)  
-    file.close()
-    return  None
 
-read_content_and_Normalize(files)
+# read and remov stopwords
+def stopwordsRemove(fileName):
+    file = open(str(fileName),"r" ,encoding="utf8") 
+    example_sent =  file.read()
+    stop_words = set(stopwords.words('english'))  
+    word_tokens = word_tokenize(example_sent)  
+    filtered = [w for w in word_tokens if not w in stop_words]  
+    filtered = []  
+  
+    for w in word_tokens:  
+        if w not in stop_words:  
+            filtered.append(w)  
+    return filtered 
+
+
+#stem words
+def stemWords(words):
+    snow_stemmer = SnowballStemmer(language='english') 
+    stem_words =[]
+    for word in words:
+         stemmed = snow_stemmer.stem(word) 
+         stem_words.append(stemmed) 
+    return stem_words

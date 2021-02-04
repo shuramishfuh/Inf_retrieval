@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>72ef05cc-f061-4966-addd-fb4ae697ed4e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ReadFiles.py</StartupFile>
+    <StartupFile>Inf_retrieval.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -34,6 +34,7 @@
     <Content Include="data\Famous_people_institution.json" />
     <Content Include="data\Google_query_wellformedness\test.json" />
     <Content Include="data\Google_query_wellformedness\train.json" />
+    <Content Include="testdata.txt" />
     <Content Include="originalData.zip" />
   </ItemGroup>
   <ItemGroup>

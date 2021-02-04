@@ -1,10 +1,19 @@
-import nltk
-def doIt(keyword):
-    filtered = []
-    tokenized = nltk.word_tokenize(keyword)
+from nltk.corpus import stopwords  
 
-    for w in tokenized:
-        if w not in stop_words:
-            filtered.append(w)
+import ReadFiles as ReadFiles
 
-    return tokenized, filtered
+a ="testdata.txt"
+b="dev.json"
+
+#set up
+path= ReadFiles.currentPath
+files =ReadFiles.searchingAllFiles(path)
+for file in files:
+    print(file)
+    words = ReadFiles.stopwordsRemove(file)
+    wordsss= ReadFiles.stemWords(words)
+    print(wordsss)
+    text = input("prompt")
+
+
+
