@@ -25,12 +25,12 @@ def stopwordsRemove(fileName):
     example_sent =  file.read()
     stop_words = set(stopwords.words('english'))  
     word_tokens = word_tokenize(example_sent)  
-    filtered = [w for w in word_tokens if not w in stop_words]  
+    filtered = [word for word in word_tokens if not word in stop_words]  
     filtered = []  
   
-    for w in word_tokens:  
-        if w not in stop_words:  
-            filtered.append(w)  
+    for word in word_tokens:  
+        if word not in stop_words and word.isalpha():  
+            filtered.append(word)  
     return filtered 
 
 
