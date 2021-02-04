@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>72ef05cc-f061-4966-addd-fb4ae697ed4e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Inf_retrieval.py</StartupFile>
+    <StartupFile>ReadFiles.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Inf_retrieval.py" />
+    <Compile Include="ReadFiles.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\Google_gap_coreference\gap-development.json" />
@@ -31,6 +34,7 @@
     <Content Include="data\Famous_people_institution.json" />
     <Content Include="data\Google_query_wellformedness\test.json" />
     <Content Include="data\Google_query_wellformedness\train.json" />
+    <Content Include="originalData.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
