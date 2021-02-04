@@ -12,9 +12,11 @@ import Iindex as InnvertedIndex
 #    stemWordss= ReadFiles.stemWords(words)
 #    stemWordss.sort()
     
-a = InnvertedIndex.Iindex("cool",2,"doc1")
-a.addPosting("nah")
-a.addPosting("colour")
-a.addPosting("fine")
+#a = InnvertedIndex.Iindex("cool",2,"doc1")
+#a.addPosting("nah")
+#a.addPosting("colour")
+#a.addPosting("fine")
+#JsonSer.writeInvertedIndex(JsonSer.to_json(a))
 
-
+LoadedIndex = JsonSer.readInvertedIndex()
+print((LoadedIndex))
