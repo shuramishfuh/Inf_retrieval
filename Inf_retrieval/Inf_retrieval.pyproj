@@ -24,7 +24,18 @@
     <Compile Include="Inf_retrieval.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Famous_people_institution.json" />
+    <Content Include="data\Google_gap_coreference\gap-development.json" />
+    <Content Include="data\Google_gap_coreference\gap-test.json" />
+    <Content Include="data\Google_gap_coreference\gap-validation.json" />
+    <Content Include="data\Google_query_wellformedness\dev.json" />
+    <Content Include="data\Famous_people_institution.json" />
+    <Content Include="data\Google_query_wellformedness\test.json" />
+    <Content Include="data\Google_query_wellformedness\train.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\Google_query_wellformedness\" />
+    <Folder Include="data\Google_gap_coreference\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
