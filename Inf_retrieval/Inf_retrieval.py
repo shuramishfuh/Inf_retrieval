@@ -18,22 +18,25 @@ def listIt(invertedIndex, doc, sWords):  # write binary search
         if word in invertedIndex:
             pass
     
-#a = InnvertedIndex.Iindex("cool",2,"doc1")
-#a.addPosting("nah")
-#a.addPosting("colour")
-#a.addPosting("fine")
 
-#c = InnvertedIndex.Iindex("fdfd",4,"fdf")
-#c.addPosting("f")
-#c.addPosting("f")
-#c.addPosting("f")
-#u ={}
-#u
-#JsonSer.writeInvertedIndex(u) 
+LoadedIndex = JsonSer.readInvertedIndex()
+a = InnvertedIndex.Iindex("dfdfdfd",2,"doc1")
+a.addPosting("nah")
+a.addPosting("colour")
+a.addPosting("fine")
+
+c = InnvertedIndex.Iindex("fdfd",4,"fdf")
+c.addPosting("fdfsdfasdfasdfa")
+c.addPosting("f")
+c.addPosting("f")
+LoadedIndex.append(a)
+LoadedIndex.append(c)
+
+JsonSer.writeInvertedIndex(LoadedIndex) 
 
 #def AddTodict(data):
     
 
-LoadedIndex = JsonSer.readInvertedIndex()
-print((LoadedIndex))
 
+#for i in LoadedIndex:
+#    print(i.getWord())
