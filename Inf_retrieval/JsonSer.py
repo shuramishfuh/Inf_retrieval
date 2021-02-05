@@ -1,12 +1,13 @@
 import json, os,Iindex
+from operator import attrgetter
 
 def writeInvertedIndex(data):
     with open("InvertedIndex.json", "w+") as write_file:
         json.dump( fromClassToDic(data), write_file, indent=4)
 
-def readInvertedIndex(): # returns list of dic
-   if os.stat("InvertedIndex.json").st_size != 0:
-        with open('InvertedIndex.json',"r") as file:
+def readInvertedIndex(file): # returns list of dic
+   if os.stat(file).st_size != 0:
+        with open(file,"r") as file:
            return fromDicToClass( json.load(file))
    else: 
        index=[]

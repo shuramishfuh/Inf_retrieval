@@ -31,23 +31,21 @@ def stopwordsRemove(fileName):
     for word in word_tokens:  
         if word not in stop_words and word.isalpha():  
             filtered.append(word)  
-    return filtered 
+    return filtered ,fileName
 
 
 #stem words
-def stemWords(words):
+def stemWords(words,fileName):
     snow_stemmer = SnowballStemmer(language='english') 
     stem_words =[]
     for word in words:
          stemmed = snow_stemmer.stem(word) 
          stem_words.append(stemmed) 
-    return stem_words
+    return stem_words,fileName
 
 
-def readInvertedIndex(fileName):
-    file = open(str(fileName),"r" ,encoding="utf8") 
-    read =  file.readlines()
-    for line in read:  
+def addToIndex(index,words,fileName):
+    for word in words:  
         if word not in stop_words and word.isalpha():  
             filtered.append(word)  
     return filtered 
