@@ -1,5 +1,5 @@
 from nltk.corpus import stopwords  
-import ReadFiles, JsonSer
+import ReadFiles, JsonSer, json
 import Iindex as InnvertedIndex
 
 
@@ -18,21 +18,22 @@ def listIt(invertedIndex, doc, sWords):  # write binary search
         if word in invertedIndex:
             pass
     
-a = InnvertedIndex.Iindex("cool",2,"doc1")
-a.addPosting("nah")
-a.addPosting("colour")
-a.addPosting("fine")
-b= JsonSer.to_json(a)
-print(vars(a))
-JsonSer.writeInvertedIndex(vars(a))
+#a = InnvertedIndex.Iindex("cool",2,"doc1")
+#a.addPosting("nah")
+#a.addPosting("colour")
+#a.addPosting("fine")
 
 #c = InnvertedIndex.Iindex("fdfd",4,"fdf")
 #c.addPosting("f")
 #c.addPosting("f")
 #c.addPosting("f")
-#d=JsonSer.to_json(c)
-#JsonSer.writeInvertedIndex(d)
+#u ={}
+#u
+#JsonSer.writeInvertedIndex(u) 
 
-#LoadedIndex = JsonSer.readInvertedIndex()
-#print((LoadedIndex))
+#def AddTodict(data):
+    
+
+LoadedIndex = JsonSer.readInvertedIndex()
+print((LoadedIndex))
 
