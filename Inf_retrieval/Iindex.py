@@ -18,4 +18,4 @@ class Iindex(object):
     def getPosting(self ):
         return self.__postingList
 
-
+   

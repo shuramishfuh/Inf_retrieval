@@ -1,1 +1,10 @@
-"{\"_Iindex__word\": \"cool\", \"_Iindex__frequency\": 5, \"_Iindex__postingList\": [\"doc1\", \"nah\", \"colour\", \"fine\"]}"
+{
+    "_Iindex__frequency": 5,
+    "_Iindex__postingList": [
+        "doc1",
+        "nah",
+        "colour",
+        "fine"
+    ],
+    "_Iindex__word": "cool"
+}
