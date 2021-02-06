@@ -19,7 +19,11 @@ def listIt(invertedIndex, doc, sWords):  # write binary search
             pass
     
 
-#LoadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
+LoadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
+for i in LoadedIndex:
+    print(i.getWord())
+
+
 #a = InnvertedIndex.Iindex("d",2,"doc1")
 #a.addPosting("nah")
 #a.addPosting("colour")

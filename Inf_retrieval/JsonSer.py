@@ -8,7 +8,9 @@ def writeInvertedIndex(data):
 def readInvertedIndex(file): # returns list of dic
    if os.stat(file).st_size != 0:
         with open(file,"r") as file:
-           return fromDicToClass( json.load(file))
+            data =json.load(file)
+            data =sorted(data, key= lambda index :index['_Iindex__word'])
+            return fromDicToClass(data)
    else: 
        index=[]
        return index
