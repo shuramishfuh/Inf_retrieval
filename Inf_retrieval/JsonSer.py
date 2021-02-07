@@ -12,16 +12,21 @@ def readInvertedIndex(file): # returns list of dic
             data =sorted(data, key= lambda index :index['_Iindex__word'])
             return fromDicToClass(data)
    else: 
-       index=[]
+       index={}
        return index
 
 # convert from Dic To to
 def fromDicToClass(dataset):
     index=[]
+    dicIndex ={}
     for data in  dataset:
            a =Iindex.Iindex(data["_Iindex__word"],data["_Iindex__frequency"],data["_Iindex__postingList"])
            index.append(a)
-    return index
+    for x in index:
+     dicIndex[x.getWord()]=x
+    return dicIndex
+
+
 # convert from Class To Dic
 def fromClassToDic(dataset):
     index=[]
@@ -30,4 +35,6 @@ def fromClassToDic(dataset):
            index.append(a)
     return index
 
-       
+def builtDic(word,index):
+    outIndexDic = dict[word]=index
+    return outIndexDic

@@ -1,12 +1,12 @@
-import  pathlib
+import  pathlib,bisect
 from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords  
 from nltk.tokenize import word_tokenize 
 
-currentPath = pathlib.Path(__file__).parent
+Filepaths = pathlib.Path(__file__).parent
 
 # read files from data folder
-def searchingAllFiles(currentPath):  
+def searchingAllFiles(currentPath=Filepaths):  
     file_list = []
 
     for file in currentPath.iterdir():
@@ -20,7 +20,7 @@ def searchingAllFiles(currentPath):
 
 
 # read and remov stopwords
-def stopwordsRemove(fileName):
+def readAndRemovestopwords(fileName):
     file = open(str(fileName),"r" ,encoding="utf8") 
     example_sent =  file.read()
     stop_words = set(stopwords.words('english'))  
@@ -41,13 +41,15 @@ def stemWords(words,fileName):
     for word in words:
          stemmed = snow_stemmer.stem(word) 
          stem_words.append(stemmed) 
-    return stem_words,fileName
+    return sorted(stem_words),fileName
 
-
-def addToIndex(index,words,fileName):
-    for word in words:  
-        if word not in stop_words and word.isalpha():  
-            filtered.append(word)  
-    return filtered 
-
+def readAll():
+    filesAndWords =[]
+    files =searchingAllFiles()
+   # for file in files:
+    
+    w,f =readAndRemovestopwords(files[7])
+    words,fileName =stemWords(w,f)
+    filesAndWords.append([words,fileName])
+    return filesAndWords
 
