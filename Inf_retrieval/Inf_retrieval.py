@@ -37,5 +37,5 @@ convertOrAddToindex(wordsAndfileName,loadedIndex)
 
 
 
-JsonSer.writeInvertedIndex(loadedIndex) 
-JsonSer.writeDocId(docIds)
+#JsonSer.writeInvertedIndex(loadedIndex) 
+#JsonSer.writeDocId(docIds)
