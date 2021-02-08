@@ -1,46 +1,43 @@
 from nltk.corpus import stopwords  
-import ReadFiles, JsonSer, json,bisect, functools
+import ReadFiles, JsonSer, json
 import Iindex as InnvertedIndex
 
 
-#set up
-#path= ReadFiles.currentPath                
-def ReadAll(path=ReadFiles.Filepaths):
-    files =ReadFiles.searchingAllFiles(path)
-    for file in files:
-        print(file)
-        words = ReadFiles.stopwordsRemove(file)
-        stemWordss= ReadFiles.stemWords(words)
-        stemWordss.sort()
+loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")            
 
-def listIt(invertedIndex, doc, sWords):  # write binary search
-    for word in sWord:
-        if word in invertedIndex:
-            pass
-    
+wordsAndfileName = ReadFiles.readAll()
 
-def addToIndex(index,words,fileName):
-    for word in words:  
-        if (bisect.bisect_left(index,word)):  
-            filtered.append(word)  
-    return filtered 
-loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
-for i in loadedIndex.values():
-    print(i.getPosting())
-#for i in loadedIndex.values():
-#    print(i.getPosting())
-#a = ReadFiles.searchingAllFiles(ReadFiles.Filepaths)
-#b = ReadFiles.readAndRemovestopwords(a[1])
-#c=ReadFiles.stemWords(b[0],b[1])
-
-#c =ReadFiles.readAll()
-#print(c[0][1])
+def convertOrAddToindex(wordsAndfileName,index):
+    for wf in wordsAndfileName:
+       for word in wf[0]:
+         if (word in index):
+           w = index[word]
+           if( wf[1] in w.getPosting()):
+                w.setFrequency()
+           else:
+                w.addPosting(str(wf[1]))
+         else:
+                  index[word] = InnvertedIndex.Iindex(word,1,str(wf[1]))
 
 
-a = InnvertedIndex.Iindex("ioy2",2,"doc1")
-a.addPosting("cdfdo")
-a.addPosting("ffdgf")
-a.addPosting("weseew")
-loadedIndex[a.getWord()]=a
+
+
+convertOrAddToindex(wordsAndfileName,loadedIndex)
+print(loadedIndex)
+
 JsonSer.writeInvertedIndex(loadedIndex) 
+
+
+
+
+
+
+
+
+#a = InnvertedIndex.Iindex("ipooy2",2,"doc1")
+#a.addPosting("cdfdo")
+#a.addPosting("ffdgf")
+#a.addPosting("weseew")
+#loadedIndex[a.getWord()]=a
+#JsonSer.writeInvertedIndex(loadedIndex) 
 

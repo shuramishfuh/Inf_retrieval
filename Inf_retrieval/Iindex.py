@@ -17,7 +17,10 @@ class Iindex(object):
         return self.__word 
     
     def getFrequency(self):
-        return self.__frequency
+        return self.__frequency 
+    
+    def setFrequency(self):
+        self.__frequency+=1
 
     def getPosting(self ):
         return self.__postingList

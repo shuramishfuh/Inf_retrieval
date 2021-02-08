@@ -30,6 +30,5 @@ def fromDicToClass(dataset):
 def fromClassToDic(dataset):
   return list(map(lambda x: vars(x),dataset.values()))
 
-def builtDic(word,index):
-    outIndexDic = dict[word]=index
-    return outIndexDic
+
+   
