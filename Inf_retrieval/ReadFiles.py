@@ -12,7 +12,7 @@ def searchingAllFiles(currentPath=Filepaths):
     for file in currentPath.iterdir():
         if file.is_file():
             p = pathlib.Path(file)
-            if  (str(file).endswith(".json")) and (p.name !="InvertedIndex.json"):
+            if  (str(file).endswith(".json")) and (p.name !="InvertedIndex.json") and (p.name !="DocId.json") :
                file_list.append(file)
         else:
             file_list.extend(searchingAllFiles(currentPath/file))
@@ -52,4 +52,6 @@ def readAll():
             words,fileName =stemWords(w,f)
             filesAndWords.append([words,fileName])
     return filesAndWords
+
+
 

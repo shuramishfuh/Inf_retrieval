@@ -42,8 +42,8 @@
     <Content Include="data\Famous_people_institution.json" />
     <Content Include="data\Google_query_wellformedness\test.json" />
     <Content Include="data\Google_query_wellformedness\train.json" />
+    <Content Include="DocId.json" />
     <Content Include="InvertedIndex.json" />
-    <Content Include="testdata.txt" />
     <Content Include="originalData.zip" />
   </ItemGroup>
   <ItemGroup>

@@ -3,10 +3,6 @@ import ReadFiles, JsonSer, json
 import Iindex as InnvertedIndex
 
 
-loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")            
-
-wordsAndfileName = ReadFiles.readAll()
-
 def convertOrAddToindex(wordsAndfileName,index):
     for wf in wordsAndfileName:
        for word in wf[0]:
@@ -19,25 +15,27 @@ def convertOrAddToindex(wordsAndfileName,index):
          else:
                   index[word] = InnvertedIndex.Iindex(word,1,str(wf[1]))
 
+def changeFileNameToDocId(wordsAndfileName,docIds):
+     for file in wordsAndfileName:
+        if(file[1] in docIds.values()):
+           file[1]=docId[file[1]]
+        else:
+            id =JsonSer.getDocId(6)
+            docIds[id]=str(file[1])
+            file[1]=id
 
+
+
+docIds =JsonSer.readDocId()
+loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")            
+
+wordsAndfileName = ReadFiles.readAll()
+changeFileNameToDocId(wordsAndfileName,docIds)
 
 
 convertOrAddToindex(wordsAndfileName,loadedIndex)
-print(loadedIndex)
+
+
 
 JsonSer.writeInvertedIndex(loadedIndex) 
-
-
-
-
-
-
-
-
-#a = InnvertedIndex.Iindex("ipooy2",2,"doc1")
-#a.addPosting("cdfdo")
-#a.addPosting("ffdgf")
-#a.addPosting("weseew")
-#loadedIndex[a.getWord()]=a
-#JsonSer.writeInvertedIndex(loadedIndex) 
-
+JsonSer.writeDocId(docIds)
