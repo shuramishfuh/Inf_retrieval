@@ -1,104 +1,12 @@
 [
-  {
-    "_Iindex__word": "dfdfdfd",
-    "_Iindex__frequency": 5,
-    "_Iindex__postingList": [
-      [
-        [
-          "doc1",
-          "nah",
-          "colour",
-          "fine"
+    {
+        "_Iindex__word": "ioy2",
+        "_Iindex__frequency": 5,
+        "_Iindex__postingList": [
+            "doc1",
+            "cdfdo",
+            "ffdgf",
+            "weseew"
         ]
-      ]
-    ]
-  },
-  {
-    "_Iindex__word": "fdfd",
-    "_Iindex__frequency": 7,
-    "_Iindex__postingList": [
-      [
-        [
-          "fdf",
-          "fdfsdfasdfasdfa",
-          "f",
-          "f"
-        ]
-      ]
-    ]
-  },
-  {
-    "_Iindex__word": "5556dfdfdfd",
-    "_Iindex__frequency": 5,
-    "_Iindex__postingList": [
-      [
-        "doc1",
-        "nah",
-        "colour",
-        "fine"
-      ]
-    ]
-  },
-  {
-    "_Iindex__word": "fdfd",
-    "_Iindex__frequency": 7,
-    "_Iindex__postingList": [
-      [
-        "fdf",
-        "775wfdfsdfasdfasdfa",
-        "f",
-        "f"
-      ]
-    ]
-  },
-  {
-    "_Iindex__word": "d",
-    "_Iindex__frequency": 5,
-    "_Iindex__postingList": [
-      "doc1",
-      "nah",
-      "colour",
-      "fine"
-    ]
-  },
-  {
-    "_Iindex__word": "8iud",
-    "_Iindex__frequency": 7,
-    "_Iindex__postingList": [
-      "fdf",
-      "775wfdfsdfasdfasdfa",
-      "f",
-      "f"
-    ]
-  },
-  {
-    "_Iindex__word": "a",
-    "_Iindex__frequency": 7,
-    "_Iindex__postingList": [
-      "fdf",
-      "775wfdfsdfasdfasdfa",
-      "f",
-      "f"
-    ]
-  },
-  {
-    "_Iindex__word": "aa",
-    "_Iindex__frequency": 7,
-    "_Iindex__postingList": [
-      "fdf",
-      "775wfdfsdfasdfasdfa",
-      "f",
-      "f"
-    ]
-  },
-  {
-    "_Iindex__word": "ab",
-    "_Iindex__frequency": 7,
-    "_Iindex__postingList": [
-      "fdf",
-      "775wfdfsdfasdfasdfa",
-      "f",
-      "f"
-    ]
-  }
+    }
 ]
