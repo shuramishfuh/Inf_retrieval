@@ -1,5 +1,25 @@
 [
     {
+        "_Iindex__word": "dfdfdfd",
+        "_Iindex__frequency": 5,
+        "_Iindex__postingList": [
+            "doc1",
+            "nah",
+            "colour",
+            "fine"
+        ]
+    },
+    {
+        "_Iindex__word": "fdfd",
+        "_Iindex__frequency": 7,
+        "_Iindex__postingList": [
+            "fdf",
+            "fdfsdfasdfasdfa",
+            "f",
+            "f"
+        ]
+    },
+    {
         "_Iindex__word": "ioy2",
         "_Iindex__frequency": 5,
         "_Iindex__postingList": [

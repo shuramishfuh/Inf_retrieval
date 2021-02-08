@@ -25,8 +25,8 @@ def addToIndex(index,words,fileName):
             filtered.append(word)  
     return filtered 
 loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
-#for i in loadedIndex.values():
-#    print(i.getPosting())
+for i in loadedIndex.values():
+    print(i.getPosting())
 #for i in loadedIndex.values():
 #    print(i.getPosting())
 #a = ReadFiles.searchingAllFiles(ReadFiles.Filepaths)
@@ -37,10 +37,10 @@ loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
 #print(c[0][1])
 
 
-#a = InnvertedIndex.Iindex("ioy2",2,"doc1")
-#a.addPosting("cdfdo")
-#a.addPosting("ffdgf")
-#a.addPosting("weseew")
-#loadedIndex[a.getWord()]=a
-#JsonSer.writeInvertedIndex(loadedIndex) 
+a = InnvertedIndex.Iindex("ioy2",2,"doc1")
+a.addPosting("cdfdo")
+a.addPosting("ffdgf")
+a.addPosting("weseew")
+loadedIndex[a.getWord()]=a
+JsonSer.writeInvertedIndex(loadedIndex) 
 

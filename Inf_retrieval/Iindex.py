@@ -2,8 +2,12 @@ class Iindex(object):
     """contains inverted index structure"""
     def __init__(self, word, frequency,docId):
         self.__word = word  
-        self.__frequency = frequency # do frequency
-        self.__postingList= [docId]
+        self.__frequency = frequency 
+        self.__postingList=[]
+        if(type(docId) == list):
+         self.__postingList+= docId
+        else: 
+            self.__postingList.append(docId)
 
     def addPosting(self, docId):
         self.__postingList.append(docId)
