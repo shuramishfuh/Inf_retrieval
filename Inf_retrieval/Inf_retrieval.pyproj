@@ -45,11 +45,13 @@
     <Content Include="DocId.json" />
     <Content Include="InvertedIndex.json" />
     <Content Include="originalData.zip" />
+    <Content Include="queries\StartsWithletterAndDocId.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
     <Folder Include="data\Google_query_wellformedness\" />
     <Folder Include="data\Google_gap_coreference\" />
+    <Folder Include="queries\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
