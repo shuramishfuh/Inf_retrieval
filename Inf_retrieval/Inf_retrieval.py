@@ -1,6 +1,7 @@
 from nltk.corpus import stopwords  
 import ReadFiles, JsonSer, json
 import Iindex as InnvertedIndex
+import functools
 
 
 def convertOrAddToindex(wordsAndfileName,index):
@@ -29,11 +30,29 @@ def changeFileNameToDocId(wordsAndfileName,docIds):
 docIds =JsonSer.readDocId()
 loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")            
 
-wordsAndfileName = ReadFiles.readAll()
-changeFileNameToDocId(wordsAndfileName,docIds)
+#wordsAndfileName = ReadFiles.readAll()
+#changeFileNameToDocId(wordsAndfileName,docIds)
+#convertOrAddToindex(wordsAndfileName,loadedIndex)
 
 
-convertOrAddToindex(wordsAndfileName,loadedIndex)
+print("***********************************************************************")
+print("***************************data 1******************************")
+print(" number of distinct words is :",len(loadedIndex.keys()))
+print(" number of documents :",len(docIds))
+for i in docIds:
+    b = list(filter(lambda x: i in x.getPosting(),loadedIndex.values()))
+    print("average number of distinct words in",i ,"is",len(b))
+
+print("***********************************************************************")
+print("***************************data 1 Ends******************************")
+
+
+
+
+
+
+
+
 
 
 

@@ -23,9 +23,9 @@ def searchingAllFiles(currentPath=Filepaths):
 # read and remov stopwords
 def readAndRemovestopwords(fileName):
     file = open(str(fileName),"r" ,encoding="utf8") 
-    example_sent =  file.read()
+    read =  file.read()
     stop_words = set(stopwords.words('english'))  
-    word_tokens = word_tokenize(example_sent)  
+    word_tokens = word_tokenize(read)  
     filtered = [word for word in word_tokens if not word in stop_words]  
     filtered = []  
   
