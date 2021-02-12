@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#
+[Dd]ata/*
+DocId.json
+InvertedIndex.json
+Inf_retrievalfilteredtext.txt
+StartsWithletterAndDocId.txt
+
 # User-specific files
 *.rsuser
 *.suo
