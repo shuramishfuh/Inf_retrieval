@@ -12,7 +12,7 @@ def searchingAllFiles(currentPath=Filepaths):
     for file in currentPath.iterdir():
         if file.is_file():
             p = pathlib.Path(file)
-            if  (str(file).endswith(".json")) and (p.name !="InvertedIndex.json") and (p.name !="DocId.json") :
+            if  (str(file).endswith(".html"))  : #and (p.name !="InvertedIndex.json") and (p.name !="DocId.json")
                file_list.append(file)
         else:
             file_list.extend(searchingAllFiles(currentPath/file))
@@ -23,10 +23,10 @@ def searchingAllFiles(currentPath=Filepaths):
 # read and remov stopwords
 def readAndRemovestopwords(fileName):
     file = open(str(fileName),"r" ,encoding="utf8") 
-    read =  file.read()
+    read =file.read()
     stop_words = set(stopwords.words('english'))  
     word_tokens = word_tokenize(read)  
-    filtered = [word for word in word_tokens if not word in stop_words]  
+    #filtered = [word for word in word_tokens if not word in stop_words]
     filtered = []  
   
     for word in word_tokens:  

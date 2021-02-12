@@ -125,4 +125,3 @@ JsonSer.writeDocId(docIds)
 
 #for ui in a:
 #    print(ui.getPosting())
-  
