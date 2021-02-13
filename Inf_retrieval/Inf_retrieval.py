@@ -35,40 +35,40 @@ print("started")
 docIds = JsonSer.readDocId()
 loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
 
-start1 = time.time()
-wordsAndfileName = ReadFiles.readAll()
-changeFileNameToDocId(wordsAndfileName, docIds)
-convertOrAddToindex(wordsAndfileName, loadedIndex)
-end1 = time.time()
-faster =end1 - start1
-print("time taken is ",faster)
+# start1 = time.time()
+# wordsAndfileName = ReadFiles.readAll()
+# changeFileNameToDocId(wordsAndfileName, docIds)
+# convertOrAddToindex(wordsAndfileName, loadedIndex)
+# end1 = time.time()
+# faster =end1 - start1
+# print("time taken is ",faster)
 
-print("***********************************************************************")
-print("***************************data 1******************************")
-print(" number of distinct words is :", len(loadedIndex.keys()))
-print(" number of documents :", len(docIds))
-for i in docIds:
-    b = list(filter(lambda x: i in x.getPosting(), loadedIndex.values()))
-    print("average number of distinct words in", i, "is", len(b))
-
-print("size of index is 15% of all files")
-print("***********************************************************************")
+# print("***********************************************************************")
+# print("***************************data 1******************************")
+# print(" number of distinct words is :", len(loadedIndex.keys()))
+# print(" number of documents :", len(docIds))
+# for i in docIds:
+#     b = list(filter(lambda x: i in x.getPosting(), loadedIndex.values()))
+#     print("average number of distinct words in", i, "is", len(b))
+#
+# print("size of index is 15% of all files")
+# print("***********************************************************************")
 print("***************************data 1 Ends******************************")
 
 # ***********************************************************************
 
-alpha = list(string.ascii_lowercase)
-letterDocIds = {}
-for x in alpha:
-    subList = []
-    for u, y in loadedIndex.items():
-        if str(u).startswith(x):
-            for w in y.getPosting():
-                if w not in subList:
-                    subList.append(w)
-    letterDocIds[x] = subList
-with open("queries/StartsWithletterAndDocId.txt", "w") as write_file:
-    json.dump(letterDocIds, write_file, indent=4)
+# alpha = list(string.ascii_lowercase)
+# letterDocIds = {}
+# for x in alpha:
+#     subList = []
+#     for u, y in loadedIndex.items():
+#         if str(u).startswith(x):
+#             for w in y.getPosting():
+#                 if w not in subList:
+#                     subList.append(w)
+#     letterDocIds[x] = subList
+# with open("queries/StartsWithletterAndDocId.txt", "w") as write_file:
+#     json.dump(letterDocIds, write_file, indent=4)
 
 
 # ***********************************************************************
@@ -125,8 +125,7 @@ def convertOrAddToindexSlower(wordsAndfileName, index):
 # JsonSer.writeInvertedIndex(loadedIndex)
 
 print(len(loadedIndex))
-print(loadedIndex.keys())
-print(loadedIndex.values())
+
 JsonSer.writeInvertedIndex(loadedIndex)
 JsonSer.writeDocId(docIds)
 
