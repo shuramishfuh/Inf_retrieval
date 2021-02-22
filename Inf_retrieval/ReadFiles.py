@@ -12,9 +12,9 @@ Filepaths = pathlib.Path(__file__).parent
 def searchingAllFiles(currentPath=Filepaths):
     file_list = []
     file = pathlib.Path
-    for dir in currentPath.iterdir():
-        if dir.is_dir() and dir.name == "stackoverflow":
-            file = dir
+    for direc in currentPath.iterdir():
+        if direc.is_dir() and direc.name == "stackoverflow":
+            file = direc
         else:
             continue
     for dirpath, dirs, files in os.walk(file):
@@ -24,24 +24,34 @@ def searchingAllFiles(currentPath=Filepaths):
     return file_list
 
 
-# read and remove stopwords
+# createBiWord combining every after word
+def createBiWord(words, fileName):
+    result = []
+    for i in range(0, len(words), 2):
+        temp = words[i]+words[i+1]
+        result.append(temp)
+    return result, pathlib.Path(fileName)
+
+
+# read and remove stopwords biwords
 def readAndRemovestopwordsFromFile(fileName):
-    file = open(str(fileName), "r", encoding="utf8",errors='ignore')
+    file = open(str(fileName), "r", encoding="utf8", errors='ignore')
     read = file.read()
     stop_words = set(stopwords.words('english'))
     word_tokens = word_tokenize(read)
     filtered = []
-    print( Fore.BLUE,"readAndRemovestopwordsFromFile from ", fileName)
+    print(Fore.BLUE, "readAndRemovestopwordsFromFile from ", fileName)
     for word in word_tokens:
         if word not in stop_words and word.isalpha():
             filtered.append(word)
     return filtered, pathlib.Path(fileName)
 
 
+# stem words
 def stemWords(words, fileName):
     snow_stemmer = SnowballStemmer(language='english')
     stem_words = []
-    print(Fore.GREEN,"stopwords from ", fileName)
+    print(Fore.GREEN, "stopwords from ", fileName)
     for word in words:
         if len(word) != 1:
             stemmed = snow_stemmer.stem(word)
@@ -50,6 +60,7 @@ def stemWords(words, fileName):
     return sorted(stem_words), pathlib.Path(fileName)
 
 
+# implement all read methods
 def readAll():
     filesAndWords = []
     files = searchingAllFiles()
@@ -57,7 +68,6 @@ def readAll():
         w, f = readAndRemovestopwordsFromFile(file)
         words, fileName = stemWords(w, f)
         filesAndWords.append([words, fileName])
+    for wfs in filesAndWords:
+        createBiWord(wfs[0],  wfs[1])
     return filesAndWords
-
-
-

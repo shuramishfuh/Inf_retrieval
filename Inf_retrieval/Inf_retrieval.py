@@ -67,11 +67,6 @@ def IntersectUsingLinearSearch(postingOne, postingTwo):
         return common
 
 
-print("started")
-docIds = JsonSer.readDocId()
-loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
-
-
 def convertOrAddToindexSlower(wordsAndfileName, index):
     for wf in wordsAndfileName:
         for word in wf[0]:
@@ -85,10 +80,15 @@ def convertOrAddToindexSlower(wordsAndfileName, index):
             else:
                 index[word] = InnvertedIndex.Iindex(word, 1, str(wf[1]))
 
+print("started")
+docIds = JsonSer.readDocId()
+loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
 
+wordsAndfileName = ReadFiles.readAll()
+changeFileNameToDocId(wordsAndfileName, docIds)
+convertOrAddToindex(wordsAndfileName, loadedIndex)
 
+print(len(loadedIndex))
 
-# print(len(loadedIndex))
-#
-# JsonSer.writeInvertedIndex(loadedIndex)
-# JsonSer.writeDocId(docIds)
+JsonSer.writeInvertedIndex(loadedIndex)
+JsonSer.writeDocId(docIds)
