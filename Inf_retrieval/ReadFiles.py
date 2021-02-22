@@ -60,14 +60,4 @@ def readAll():
     return filesAndWords
 
 
-# # b = searchingAllFiles()
-# # c = b[2]
-# # print(b[1])
-# # d = readAndRemovestopwordsFromFile(c)
-# # print(stemWords(d[0], d[1]))
-# d = readAll()
-# print(len(d))
-# print(type(d[0]))
-# print(type(d[1]))
-# print(d[1])
-# print(d[0])
+
