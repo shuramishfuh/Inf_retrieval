@@ -6,7 +6,7 @@
 #
 [Dd]ata/*
 [Dd]ocId.json
-InvertedIndex.json
+Inf_retrieval/InvertedIndex.json
 Inf_retrievalfilteredtext.txt
 [Qq]ueries/*
 [Ss]tackoverflow.com/*

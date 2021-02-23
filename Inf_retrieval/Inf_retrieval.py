@@ -1,13 +1,14 @@
-from nltk.corpus import stopwords
-import ReadFiles, JsonSer, json
-import Iindex as InnvertedIndex
-import functools, string, bisect, time
+import bisect
+
 from colorama import Fore
-import matplotlib.pyplot as plt
+
+import Iindex as InnvertedIndex
+import JsonSer
+import ReadFiles
 
 
-def convertOrAddToindex(wordsAndfileName, index):
-    for wf in wordsAndfileName:
+def convertOrAddToindex(innerwordsAndfileName, index):
+    for wf in innerwordsAndfileName:
         print(Fore.YELLOW, "adding to index from ", wf[1])
         for word in wf[0]:
             if word in index:
@@ -20,15 +21,15 @@ def convertOrAddToindex(wordsAndfileName, index):
                 index[word] = InnvertedIndex.Iindex(word, 1, str(wf[1]))
 
 
-def changeFileNameToDocId(wordsAndfileName, docIds):
-    for file in wordsAndfileName:
+def changeFileNameToDocId(innerwordsAndfileName, interenalDocIds):
+    for file in innerwordsAndfileName:
         print(Fore.CYAN, "changing file ", file[1])
-        if file[1] in docIds.values():
-            file[1] = docIds[file[1]]
+        if file[1] in interenalDocIds.values():
+            file[1] = interenalDocIds[file[1]]
         else:
-            id = JsonSer.getDocId(6)
-            docIds[id] = str(file[1])
-            file[1] = id
+            fileId = JsonSer.getDocId(8)
+            interenalDocIds[fileId] = str(file[1])
+            file[1] = fileId
 
 
 def intersectUsingBinarySearch(postingOne, postingTwo):
@@ -67,8 +68,8 @@ def IntersectUsingLinearSearch(postingOne, postingTwo):
         return common
 
 
-def convertOrAddToindexSlower(wordsAndfileName, index):
-    for wf in wordsAndfileName:
+def convertOrAddToindexSlower(innerwordsAndfileName, index):
+    for wf in innerwordsAndfileName:
         for word in wf[0]:
             c = bisect.bisect_left(list(loadedIndex.keys()), word)
             if list(loadedIndex.keys())[c] == word:
@@ -79,6 +80,7 @@ def convertOrAddToindexSlower(wordsAndfileName, index):
                     w.addPosting(str(wf[1]))
             else:
                 index[word] = InnvertedIndex.Iindex(word, 1, str(wf[1]))
+
 
 print("started")
 docIds = JsonSer.readDocId()

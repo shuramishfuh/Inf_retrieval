@@ -27,13 +27,13 @@ def searchingAllFiles(currentPath=Filepaths):
 # createBiWord combining every after word
 def createBiWord(words, fileName):
     result = []
-    for i in range(0, len(words), 2):
-        temp = words[i]+words[i+1]
+    for i in range(1, len(words) - 1, 2):
+        temp = words[i - 1] + " " + words[i]
         result.append(temp)
     return result, pathlib.Path(fileName)
 
 
-# read and remove stopwords biwords
+# read and remove stopwords
 def readAndRemovestopwordsFromFile(fileName):
     file = open(str(fileName), "r", encoding="utf8", errors='ignore')
     read = file.read()
@@ -63,11 +63,14 @@ def stemWords(words, fileName):
 # implement all read methods
 def readAll():
     filesAndWords = []
+    filesAndWordsBiWords = []
     files = searchingAllFiles()
     for file in files:
         w, f = readAndRemovestopwordsFromFile(file)
         words, fileName = stemWords(w, f)
         filesAndWords.append([words, fileName])
+    # convert to biWord
     for wfs in filesAndWords:
-        createBiWord(wfs[0],  wfs[1])
-    return filesAndWords
+        xwords, yfileName = createBiWord(wfs[0], wfs[1])
+        filesAndWordsBiWords.append([xwords, yfileName])
+    return filesAndWordsBiWords
