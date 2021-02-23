@@ -1,32 +1,44 @@
 import bisect
-
+import ReadFiles as Read
 from colorama import Fore
 
 import Iindex as InnvertedIndex
 import JsonSer
-import ReadFiles
 
 
 def convertOrAddToindex(innerwordsAndfileName, index):
     for wf in innerwordsAndfileName:
         print(Fore.YELLOW, "adding to index from ", wf[1])
-        for word in wf[0]:
-            if word in index:
-                w = index[word]
+        for x_word in wf[0]:
+            if x_word in index:
+                w = index[x_word]
                 if wf[1] in w.getPosting():
                     w.setFrequency()
                 else:
                     w.addPosting(str(wf[1]))
             else:
-                index[word] = InnvertedIndex.Iindex(word, 1, str(wf[1]))
+                index[x_word] = InnvertedIndex.Iindex(x_word, 1, str(wf[1]))
+
+
+def convertOrAddToindexPositionalIndex(innerwordsAndfileName, index):
+    for wf in innerwordsAndfileName:
+        print(Fore.YELLOW, "adding to index from ", wf[1])
+        for x_word, position in wf[0]:
+            if x_word in index:
+                w = index[x_word]
+                pos = w.getPosting()
+                if wf[1] in pos:
+                    w.addPostingAlreadyExistWord(wf[1], position)
+                else:
+                    w.addPosting(str(wf[1]), position)
+            else:
+                index[x_word] = InnvertedIndex.PositionalIndex(x_word, str(wf[1]), position)
 
 
 def changeFileNameToDocId(innerwordsAndfileName, interenalDocIds):
     for file in innerwordsAndfileName:
         print(Fore.CYAN, "changing file ", file[1])
-        if file[1] in interenalDocIds.values():
-            file[1] = interenalDocIds[file[1]]
-        else:
+        if not file[1] in interenalDocIds.values():
             fileId = JsonSer.getDocId(8)
             interenalDocIds[fileId] = str(file[1])
             file[1] = fileId
@@ -68,29 +80,55 @@ def IntersectUsingLinearSearch(postingOne, postingTwo):
         return common
 
 
+def intersectSingleUsingBinary(y_word, index):
+    result = (bisect.bisect_left(index, y_word))
+    if index[result] == y_word:
+        return "NOne"
+    else:
+        return result
+
+
 def convertOrAddToindexSlower(innerwordsAndfileName, index):
     for wf in innerwordsAndfileName:
-        for word in wf[0]:
-            c = bisect.bisect_left(list(loadedIndex.keys()), word)
-            if list(loadedIndex.keys())[c] == word:
-                w = index[word]
+        for x_word in wf[0]:
+            c = bisect.bisect_left(list(index.keys()), x_word)
+            if list(index.keys())[c] == x_word:
+                w = index[x_word]
                 if wf[1] in w.getPosting():
                     w.setFrequency()
                 else:
                     w.addPosting(str(wf[1]))
             else:
-                index[word] = InnvertedIndex.Iindex(word, 1, str(wf[1]))
+                index[x_word] = InnvertedIndex.Iindex(x_word, 1, str(wf[1]))
 
 
-print("started")
-docIds = JsonSer.readDocId()
-loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
+# driver for regular index
+# Read and build index
+# print("started")
+# docIds = JsonSer.readDocId()
+# loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
 
-wordsAndfileName = ReadFiles.readAll()
-changeFileNameToDocId(wordsAndfileName, docIds)
-convertOrAddToindex(wordsAndfileName, loadedIndex)
+# wordsAndfileName = ReadFiles.readAll()
+# changeFileNameToDocId(wordsAndfileName, docIds)
+# convertOrAddToindex(wordsAndfileName, loadedIndex)
+# JsonSer.writeInvertedIndex(loadedIndex)
+# JsonSer.writeDocId(docIds)
+# print(len(loadedIndex))
 
-print(len(loadedIndex))
+# word = " reflect regular"
+# b =intersectSingleUsingBinary(word, list(loadedIndex.keys()))
+# print(type(b))
+# print(loadedIndex["reflect regular"])
 
-JsonSer.writeInvertedIndex(loadedIndex)
-JsonSer.writeDocId(docIds)
+
+# driver for positional index
+positionalWords = Read.readAllPositional()
+# docIds = JsonSer.readDocIdPositional()
+# loadedIndex = JsonSer.readInvertedIndexPositional("DocIdPositional.json")
+loadedIndex={}
+docIds={}
+changeFileNameToDocId(positionalWords, docIds)
+convertOrAddToindexPositionalIndex(positionalWords, loadedIndex)
+JsonSer.writeInvertedIndexPositional(loadedIndex)
+JsonSer.writeDocIdPositional(docIds)
+# print(loadedIndex)
