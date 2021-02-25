@@ -31,9 +31,8 @@ def readInvertedIndexPositional(file):  # returns list of dic
     if os.stat(file).st_size != 0:
         with open(file, "r") as file:
             data = json.load(file)
-            # data = sorted(data, key=lambda index: index['_PositionalIndex__word'])
-            # return fromDicToClassPositional(data)
-            return data
+            data = sorted(data, key=lambda indexPos: indexPos['_PositionalIndex__word'])
+            return fromDicToClassPositional(data)
     else:
         index = {}
         print("Positional Inverted index is empty ")
@@ -47,13 +46,14 @@ def fromDicToClass(dataset):
         x = Iindex.Iindex(data["_Iindex__word"], data["_Iindex__frequency"],
                           list(map(lambda x: x, data["_Iindex__postingList"])))
         c = dicIndex[x.getWord()] = x
-    return dicIndex#
+    return dicIndex  #
     # convert from Dic To to
+
+
 def fromDicToClassPositional(dataset):
     dicIndex = {}
     for data in dataset:
-        x = Iindex.Iindex(data["_PositionalIndex__word"],
-                          list(map(lambda x: x, data["_PositionalIndex__postingList"])))
+        x = Iindex.PositionalIndex(data["_PositionalIndex__word"], data["_PositionalIndex__postingList"])
         c = dicIndex[x.getWord()] = x
     return dicIndex
 

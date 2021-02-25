@@ -4,6 +4,7 @@ InvertedIndex.json
 [Dd]ocId.json
 InvertedIndex.json
 Inf_retrievalfilteredtext.txt
+Inf_retrieval/InvertedIndex.json
 [Qq]ueries/*
 [Ss]tackoverflow/*
 *.html

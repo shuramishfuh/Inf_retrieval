@@ -103,6 +103,7 @@ def convertOrAddToindexSlower(innerwordsAndfileName, index):
 
 
 # driver for regular index
+
 # Read and build index
 # print("started")
 # docIds = JsonSer.readDocId()
@@ -121,14 +122,19 @@ def convertOrAddToindexSlower(innerwordsAndfileName, index):
 # print(loadedIndex["reflect regular"])
 
 
+# end
+
+
 # driver for positional index
-positionalWords = Read.readAllPositional()
+
+# positionalWords = Read.readAllPositional()
 # docIds = JsonSer.readDocIdPositional()
 # loadedIndex = JsonSer.readInvertedIndexPositional("DocIdPositional.json")
-loadedIndex={}
-docIds={}
-changeFileNameToDocId(positionalWords, docIds)
-convertOrAddToindexPositionalIndex(positionalWords, loadedIndex)
-JsonSer.writeInvertedIndexPositional(loadedIndex)
-JsonSer.writeDocIdPositional(docIds)
+# changeFileNameToDocId(positionalWords, docIds)
+# convertOrAddToindexPositionalIndex(positionalWords, loadedIndex)
+# JsonSer.writeInvertedIndexPositional(loadedIndex)
+# JsonSer.writeDocIdPositional(docIds)
 # print(loadedIndex)
+
+
+

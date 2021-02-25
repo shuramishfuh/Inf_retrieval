@@ -29,18 +29,13 @@ class Iindex(object):
 
 class PositionalIndex(object):
 
-    def __init__(self, word, docId, position):
-        self.__word = word
-        self.__postingList = {docId: [position]}
-        set(self.__postingList)
-
-    def __init__(self, word, postings):
-        self.__word = word
-        self.__postingList = postings
-
-    def addPosting(self, docId, position):
-        self.__postingList[docId] = [position]
-        return self
+    def __init__(self, *args):
+        if len(args) > 2:
+            self.__word = args[0]
+            self.__postingList = {args[1]: args[2]}
+        else:
+            self.__word = args[0]
+            self.__postingList = args[1]
 
     def addPostingAlreadyExistWord(self, docId, position):
         temp = self.__postingList[docId]

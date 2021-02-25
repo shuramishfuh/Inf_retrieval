@@ -6,18 +6,17 @@
 #
 [Dd]ata/*
 [Dd]ocId.json
-Inf_retrieval/InvertedIndex.json
 Inf_retrievalfilteredtext.txt
 [Qq]ueries/*
 [Ss]tackoverflow.com/*
-
+[Ii]nf_retrieval/InvertedIndex.json
 # User-specific files
 *.rsuser
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-
+*.json
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

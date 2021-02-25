@@ -105,7 +105,6 @@ def readAllBiWords():
 
 def readAll():
     filesAndWords = []
-    filesAndWordsBiWords = []
     files = searchingAllFiles()
     for file in files:
         w, f = readAndRemovestopwordsFromFile(file)
@@ -116,12 +115,9 @@ def readAll():
 
 def readAllPositional():
     filesAndWords = []
-    filesAndWordsBiWords = []
     files = searchingAllFiles()
     for file in files:
             w, f = readAndRemovestopwordsFromFilePositional(file)
             words, fileName = stemWordsPositional(w, f)
             filesAndWords.append([words, fileName])
-    # convert to biWord
-
     return filesAndWords
