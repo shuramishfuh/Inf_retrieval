@@ -1,6 +1,8 @@
 import bisect
 import time
 from functools import wraps
+from itertools import product
+import enchant
 
 from colorama import Fore
 
@@ -182,6 +184,25 @@ def intersectPositional(ReturnedIndex):
     return common
 
 
+def generateAllPossibleWords(word):
+    d = enchant.Dict("en_US")
+    d.check(word)
+    return d.suggest(word)
+
+
+def returnEditDistance(word, testString):
+    return enchant.utils.levenshtein(word, testString)
+
+
+def getWordsOfEditDistanceTwo(word):
+    a = generateAllPossibleWords(word)
+    out = []
+    for x in a:
+        if returnEditDistance(word, x) < 3:
+            out.append(x)
+    return out
+
+
 # driver for regular index
 
 # Read and build index
@@ -232,3 +253,5 @@ def intersectPositional(ReturnedIndex):
 # intersectPositional(d)
 # end = time.time()
 # print(end - start)
+
+
