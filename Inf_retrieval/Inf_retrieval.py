@@ -80,12 +80,22 @@ def FindDocsCommonTOPhrase(phrase, index):
     return list(set.intersection(*map(set, allList)))
 
 
+def searchAllWordsReturnListOfIndex(words, index):
+    result = []
+    for word in words.split():
+        temp = easySearch(word, index)
+        if temp:
+            result.append(temp)
+    return result
+
+
 def intersectToProduceContainingDoc(phrase, index):
     match = []
     for phrase_word in generateAllPossibleBiWords(phrase):
         out = easySearch(phrase_word, index)
         if out:
             match.append(out)
+    output = ""
     if match:
         output = FindDocsCommonTOPhrase(phrase, match)
     return output
@@ -149,6 +159,29 @@ def convertOrAddToindexSlower(innerwordsAndfileName, index):
                 index[x_word] = InnvertedIndex.Iindex(x_word, 1, str(wf[1]))
 
 
+# takes returned index of two index
+def intersectPositional(ReturnedIndex):
+    # get name
+    first = set(ReturnedIndex[0].getPosting())
+    second = set(ReturnedIndex[1].getPosting())
+    intersect = list(first.intersection(second))
+    intersect.sort()
+    # get elements
+    firstPosting = ReturnedIndex[0].getPosting()
+    secondPosting = ReturnedIndex[1].getPosting()
+    common = []
+    for docId in intersect:  # order might change test forward and backward
+        if len(firstPosting[docId]) < len(secondPosting[docId]):
+            for pos in firstPosting[docId]:
+                if ((pos + 1) in secondPosting[docId]) or (pos - 1) in secondPosting[docId]:
+                    common.append(docId)
+        else:
+            for pos in secondPosting[docId]:
+                if ((pos + 1) in firstPosting[docId]) or (pos - 1) in firstPosting[docId]:
+                    common.append(docId)
+    return common
+
+
 # driver for regular index
 
 # Read and build index
@@ -165,21 +198,16 @@ def convertOrAddToindexSlower(innerwordsAndfileName, index):
 
 
 # driver for BiwordIndex
-loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
-docIds = JsonSer.readDocId()
-word = "last lastact"
-word1 = "somehow someon"
-word2 = "inner input"
-word3 = "french from"
-word4 = "french from"
-word5 = "oppos option"
+# loadedIndex = JsonSer.readInvertedIndex("InvertedIndex.json")
+# docIds = JsonSer.readDocId()
+
 # d = easySearch(word4,loadedIndex)
 # print(d.getPosting())
-c = " last lastact inner input french from"
-
-a= (intersectToProduceContainingDoc(c, loadedIndex))
-for x in a:
-    print(JsonSer.changeDocIdToFileName(x,docIds))
+# c = " last lastact inner input french from"
+# start = time.time()
+# a = (intersectToProduceContainingDoc(c, loadedIndex))
+# end = time.time()
+# print(end - start)
 
 # end
 
@@ -195,6 +223,12 @@ for x in a:
 # JsonSer.writeDocIdPositional(docIds)
 # print(loadedIndex)
 
-
-# positionalWords = JsonSer.readInvertedIndexPositional("InvertedIndexPositional.json")
-# print(len(positionalWords))
+# a = "to be"
+# c = " last lastact inner input french from"
+# #
+# loadedIndex = JsonSer.readInvertedIndexPositional("InvertedIndexPositional.json")
+# start = time.time()
+# d = searchAllWordsReturnListOfIndex(c, loadedIndex)
+# intersectPositional(d)
+# end = time.time()
+# print(end - start)

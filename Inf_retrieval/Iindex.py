@@ -33,6 +33,7 @@ class PositionalIndex(object):
         if len(args) > 2:
             self.__word = args[0]
             self.__postingList = {args[1]: args[2]}
+            self
         else:
             self.__word = args[0]
             self.__postingList = args[1]
